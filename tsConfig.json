@@ -1,0 +1,23 @@
+{
+    "compilerOptions" : {
+        "lib" : [
+            "es5",
+            "es6",
+            "DOM"
+        ],
+        "target": "ES6",
+        "outDir": "build",
+        "rootDir": "src",
+        "module": "commonjs",
+        "allowSyntheticDefaultImports": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "noUnusedLocals": false
+  
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+  }
