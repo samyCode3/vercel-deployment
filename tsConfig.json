@@ -6,7 +6,7 @@
             "DOM"
         ],
         "target": "ES6",
-        "outDir": "public",
+        "outDir": "bulid",
         "rootDir": "src",
         "module": "commonjs",
         "allowSyntheticDefaultImports": true,
