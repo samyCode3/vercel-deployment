@@ -11,7 +11,7 @@ export class Connections {
   constructor() {
      this.app = express()
      this.app.use(express.json({limit : "50mb"}))
-     this.app.use(cors())
+     this.app.use(cors)
      this.loadConnection()
   }
 
