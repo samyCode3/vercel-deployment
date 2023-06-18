@@ -2,13 +2,13 @@
     "version": 2,
     "builds": [
       {
-        "src": "build/index.js",
+        "src": "public/index.js",
         "use": "@now/node"
       }
     ],
     "routes": [
       {
-        "src": "/(.*)",
+        "src": "public/routes/index.js",
         "dest": "public"
       }
     ]

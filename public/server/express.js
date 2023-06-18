@@ -16,6 +16,7 @@ exports.Connections = void 0;
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../config/config");
+const routes_1 = require("../routes");
 const configs = new config_1.Config;
 const PORT = configs.PORT;
 class Connections {
@@ -27,6 +28,19 @@ class Connections {
     }
     loadConnection() {
         return __awaiter(this, void 0, void 0, function* () {
+            this.app.get('/', (req, res) => {
+                return res.send('Happy coding');
+            });
+            this.app.use('/api/v1', routes_1.IndexRoutes);
+            this.app.use('*', (req, res) => {
+                return res.json({
+                    ok: false,
+                    status: 404,
+                    url: req.url,
+                    Ip: req.ip,
+                    message: "Route not found"
+                });
+            });
             this.app.listen(PORT, () => {
                 console.log(`Server running on port ${PORT}`);
             });
