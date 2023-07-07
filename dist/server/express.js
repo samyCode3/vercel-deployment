@@ -17,35 +17,30 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../config/config");
 const routes_1 = require("../routes");
+const database_1 = require("../config/database");
 const configs = new config_1.Config;
 const PORT = configs.PORT;
-class Connections {
-    constructor() {
-        this.app = (0, express_1.default)();
-        this.app.use(express_1.default.json({ limit: "50mb" }));
-        this.app.use(cors_1.default);
-        this.loadConnection();
-    }
-    loadConnection() {
-        return __awaiter(this, void 0, void 0, function* () {
-            this.app.get('/', (req, res) => {
-                return res.send('Happy coding');
-            });
-            this.app.use('/api/v1', routes_1.IndexRoutes);
-            this.app.use('*', (req, res) => {
-                return res.json({
-                    ok: false,
-                    status: 404,
-                    url: req.url,
-                    Ip: req.ip,
-                    message: "Route not found"
-                });
-            });
-            this.app.listen(PORT, () => {
-                console.log(`Server running on port ${PORT}`);
-            });
-        });
-    }
-}
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
+app.use((0, cors_1.default)());
+const Connections = () => __awaiter(void 0, void 0, void 0, function* () {
+    yield database_1.sequelize.sync(({ alter: false }))
+        .then(() => __awaiter(void 0, void 0, void 0, function* () {
+        console.log("Database Connected");
+    })).catch(() => {
+        console.log("Database not connected");
+    });
+    app.get('/', (req, res) => {
+        console.log("Happy Coding");
+        return res.send('Happy coding');
+    });
+    app.use('/api/v1', routes_1.IndexRoutes);
+    app.use('*', (req, res) => {
+        return res.json({ ok: false, status: 404, url: req.url, Ip: req.ip, message: "Route not found" });
+    });
+    app.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
+});
 exports.Connections = Connections;
 //# sourceMappingURL=express.js.map
