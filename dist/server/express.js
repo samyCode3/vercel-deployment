@@ -17,19 +17,18 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../config/config");
 const routes_1 = require("../routes");
-const database_1 = require("../config/database");
 const configs = new config_1.Config;
 const PORT = configs.PORT;
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use((0, cors_1.default)());
 const Connections = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield database_1.sequelize.sync(({ alter: false }))
-        .then(() => __awaiter(void 0, void 0, void 0, function* () {
-        console.log("Database Connected");
-    })).catch(() => {
-        console.log("Database not connected");
-    });
+    //    await sequelize.sync(({ alter : false}))
+    //     .then(async () => {
+    //         console.log("Database Connected")
+    //     }).catch(() => {
+    //         console.log("Database not connected")
+    //     })
     app.get('/', (req, res) => {
         console.log("Happy Coding");
         return res.send('Happy coding');

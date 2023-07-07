@@ -11,12 +11,12 @@ app.use(express.json())
 app.use(cors())
 export const Connections = async () =>  {
 
-   await sequelize.sync(({ alter : false}))
-    .then(async () => {
-        console.log("Database Connected")
-    }).catch(() => {
-        console.log("Database not connected")
-    })
+//    await sequelize.sync(({ alter : false}))
+//     .then(async () => {
+//         console.log("Database Connected")
+//     }).catch(() => {
+//         console.log("Database not connected")
+//     })
     app.get('/', (req, res) => {
                    console.log("Happy Coding")
                    return res.send('Happy coding')
